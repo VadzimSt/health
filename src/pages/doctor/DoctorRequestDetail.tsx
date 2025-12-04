@@ -139,7 +139,7 @@ export default function DoctorRequestDetail() {
             className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-4"
           >
             <ArrowLeft className="h-4 w-4" />
-            Back to List
+            Back
           </Link>
           <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
             <div>

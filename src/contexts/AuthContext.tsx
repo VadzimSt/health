@@ -18,6 +18,7 @@ interface AuthContextType {
     name: string,
     role: UserRole
   ) => Promise<void>;
+  updateProfile: (userData: Partial<User>) => Promise<void>;
   logout: () => void;
 }
 
@@ -84,6 +85,27 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setUser(null);
   }, []);
 
+  const updateProfile = useCallback(
+    async (userData: Partial<User>) => {
+      setIsLoading(true);
+      // Simulate API call
+      await new Promise((resolve) => setTimeout(resolve, 500));
+
+      if (user) {
+        const updatedUser = { ...user, ...userData };
+        setUser(updatedUser);
+
+        // Update mock users array
+        const userIndex = mockUsers.findIndex((u) => u.id === user.id);
+        if (userIndex !== -1) {
+          mockUsers[userIndex] = updatedUser;
+        }
+      }
+      setIsLoading(false);
+    },
+    [user]
+  );
+
   return (
     <AuthContext.Provider
       value={{
@@ -92,6 +114,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         isLoading,
         login,
         register,
+        updateProfile,
         logout,
       }}
     >

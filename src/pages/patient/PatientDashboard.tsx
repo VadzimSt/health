@@ -12,6 +12,7 @@ import {
   CheckCircle2,
   XCircle,
   Sparkles,
+  User,
 } from "lucide-react";
 
 export default function PatientDashboard() {
@@ -40,12 +41,20 @@ export default function PatientDashboard() {
               Manage your prescription requests
             </p>
           </div>
-          <Button asChild size="lg" variant="hero">
-            <Link to="/patient/new-request">
-              <Plus className="h-5 w-5" />
-              New Request
-            </Link>
-          </Button>
+          <div className="flex gap-3">
+            {/* <Button asChild size="lg" variant="outline">
+              <Link to="/patient/profile">
+                <User className="h-5 w-5 mr-2" />
+                Edit Profile
+              </Link>
+            </Button> */}
+            <Button asChild size="lg" variant="hero">
+              <Link to="/patient/new-request">
+                <Plus className="h-5 w-5" />
+                New Request
+              </Link>
+            </Button>
+          </div>
         </div>
 
         {/* Stats */}

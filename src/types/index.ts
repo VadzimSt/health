@@ -1,4 +1,4 @@
-export type UserRole = 'patient' | 'admin';
+export type UserRole = "patient" | "admin";
 
 export interface User {
   id: string;
@@ -7,9 +7,16 @@ export interface User {
   role: UserRole;
   avatar?: string;
   createdAt: Date;
+  dateOfBirth?: string;
+  phone?: string;
+  address?: string;
+  emergencyContact?: string;
+  bloodType?: string;
+  allergies?: string;
+  medicalConditions?: string;
 }
 
-export type RequestStatus = 'pending' | 'approved' | 'rejected';
+export type RequestStatus = "pending" | "approved" | "rejected";
 
 export interface PrescriptionRequest {
   id: string;

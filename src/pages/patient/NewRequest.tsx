@@ -128,7 +128,7 @@ export default function NewRequest() {
             className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-4"
           >
             <ArrowLeft className="h-4 w-4" />
-            Back to List
+            Back
           </Link>
           <h1 className="text-3xl font-display font-bold text-foreground">
             New Prescription Request

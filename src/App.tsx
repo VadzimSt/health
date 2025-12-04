@@ -14,6 +14,7 @@ import NotFound from "./pages/NotFound";
 import PatientDashboard from "./pages/patient/PatientDashboard";
 import NewRequest from "./pages/patient/NewRequest";
 import PatientRequestDetail from "./pages/patient/RequestDetail";
+import Profile from "./pages/patient/Profile";
 
 // Doctor pages
 import DoctorDashboard from "./pages/doctor/DoctorDashboard";
@@ -56,6 +57,14 @@ function AppRoutes() {
         element={
           <ProtectedRoute allowedRole="patient">
             <PatientDashboard />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/patient/profile"
+        element={
+          <ProtectedRoute allowedRole="patient">
+            <Profile />
           </ProtectedRoute>
         }
       />
