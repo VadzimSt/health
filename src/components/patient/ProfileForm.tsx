@@ -202,59 +202,6 @@ export function ProfileForm({ user }: ProfileFormProps) {
           </div>
         </div>
 
-        {/* Address */}
-        <div className="space-y-2">
-          <Label htmlFor="address">
-            <div className="flex items-center gap-2">
-              <MapPin className="h-4 w-4" />
-              Address
-            </div>
-          </Label>
-          <Textarea
-            id="address"
-            name="address"
-            value={formData.address}
-            onChange={handleInputChange}
-            placeholder="Enter your address"
-            rows={3}
-          />
-        </div>
-
-        {/* Medical Information */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="space-y-2">
-            <Label htmlFor="bloodType">
-              <div className="flex items-center gap-2">
-                <Shield className="h-4 w-4" />
-                Blood Type
-              </div>
-            </Label>
-            <Input
-              id="bloodType"
-              name="bloodType"
-              value={formData.bloodType}
-              onChange={handleInputChange}
-              placeholder="e.g., A+, O-, etc."
-            />
-          </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="emergencyContact">
-              <div className="flex items-center gap-2">
-                <Phone className="h-4 w-4" />
-                Emergency Contact
-              </div>
-            </Label>
-            <Input
-              id="emergencyContact"
-              name="emergencyContact"
-              value={formData.emergencyContact}
-              onChange={handleInputChange}
-              placeholder="Name and phone number"
-            />
-          </div>
-        </div>
-
         {/* Medical Conditions */}
         <div className="space-y-2">
           <Label htmlFor="allergies">Allergies</Label>
@@ -267,19 +214,6 @@ export function ProfileForm({ user }: ProfileFormProps) {
             rows={3}
           />
         </div>
-
-        <div className="space-y-2">
-          <Label htmlFor="medicalConditions">Medical Conditions</Label>
-          <Textarea
-            id="medicalConditions"
-            name="medicalConditions"
-            value={formData.medicalConditions}
-            onChange={handleInputChange}
-            placeholder="List any medical conditions (separated by commas)"
-            rows={3}
-          />
-        </div>
-
         <div className="flex gap-3">
           <Button type="submit" disabled={isLoading}>
             {isLoading ? "Saving..." : "Save Changes"}
