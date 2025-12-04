@@ -22,17 +22,25 @@ import DoctorRequestDetail from "./pages/doctor/DoctorRequestDetail";
 const queryClient = new QueryClient();
 
 // Protected route wrapper
-function ProtectedRoute({ children, allowedRole }: { children: React.ReactNode; allowedRole?: 'patient' | 'admin' }) {
+function ProtectedRoute({
+  children,
+  allowedRole,
+}: {
+  children: React.ReactNode;
+  allowedRole?: "patient" | "admin";
+}) {
   const { isAuthenticated, user } = useAuth();
-  
+
   if (!isAuthenticated) {
     return <Navigate to="/auth" replace />;
   }
-  
+
   if (allowedRole && user?.role !== allowedRole) {
-    return <Navigate to={user?.role === 'admin' ? '/doctor' : '/patient'} replace />;
+    return (
+      <Navigate to={user?.role === "admin" ? "/doctor" : "/patient"} replace />
+    );
   }
-  
+
   return <>{children}</>;
 }
 
@@ -41,51 +49,51 @@ function AppRoutes() {
     <Routes>
       <Route path="/" element={<Index />} />
       <Route path="/auth" element={<Auth />} />
-      
+
       {/* Patient Routes */}
-      <Route 
-        path="/patient" 
+      <Route
+        path="/patient"
         element={
           <ProtectedRoute allowedRole="patient">
             <PatientDashboard />
           </ProtectedRoute>
-        } 
+        }
       />
-      <Route 
-        path="/patient/new-request" 
+      <Route
+        path="/patient/new-request"
         element={
           <ProtectedRoute allowedRole="patient">
             <NewRequest />
           </ProtectedRoute>
-        } 
+        }
       />
-      <Route 
-        path="/patient/request/:id" 
+      <Route
+        path="/patient/request/:id"
         element={
           <ProtectedRoute allowedRole="patient">
             <PatientRequestDetail />
           </ProtectedRoute>
-        } 
+        }
       />
-      
+
       {/* Doctor Routes */}
-      <Route 
-        path="/doctor" 
+      <Route
+        path="/doctor"
         element={
           <ProtectedRoute allowedRole="admin">
             <DoctorDashboard />
           </ProtectedRoute>
-        } 
+        }
       />
-      <Route 
-        path="/doctor/request/:id" 
+      <Route
+        path="/doctor/request/:id"
         element={
           <ProtectedRoute allowedRole="admin">
             <DoctorRequestDetail />
           </ProtectedRoute>
-        } 
+        }
       />
-      
+
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
@@ -98,7 +106,7 @@ const App = () => (
         <TooltipProvider>
           <Toaster />
           <Sonner />
-          <BrowserRouter>
+          <BrowserRouter basename="/health">
             <AppRoutes />
           </BrowserRouter>
         </TooltipProvider>
