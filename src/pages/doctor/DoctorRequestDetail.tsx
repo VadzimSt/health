@@ -262,7 +262,7 @@ export default function DoctorRequestDetail() {
                     <DialogTrigger asChild>
                       <Button className="w-full" variant="success">
                         <CheckCircle2 className="h-4 w-4 mr-2" />
-                        Approve and Issue Prescription
+                        Approve and Issue
                       </Button>
                     </DialogTrigger>
                     <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto">
