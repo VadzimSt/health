@@ -57,22 +57,6 @@ export default function PatientDashboard() {
           </div>
         </div>
 
-        {/* Stats */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-          <StatsCard
-            title="Total Requests"
-            value={stats.total}
-            icon={FileText}
-          />
-          <StatsCard title="Pending" value={stats.pending} icon={Clock} />
-          <StatsCard
-            title="Approved"
-            value={stats.approved}
-            icon={CheckCircle2}
-          />
-          <StatsCard title="Rejected" value={stats.rejected} icon={XCircle} />
-        </div>
-
         {/* Requests List */}
         <div>
           <h2 className="text-xl font-semibold text-foreground mb-4">
