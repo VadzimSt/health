@@ -42,12 +42,6 @@ export default function PatientDashboard() {
             </p>
           </div>
           <div className="flex gap-3">
-            {/* <Button asChild size="lg" variant="outline">
-              <Link to="/patient/profile">
-                <User className="h-5 w-5 mr-2" />
-                Edit Profile
-              </Link>
-            </Button> */}
             <Button asChild size="lg" variant="hero">
               <Link to="/patient/new-request">
                 <Plus className="h-5 w-5" />
