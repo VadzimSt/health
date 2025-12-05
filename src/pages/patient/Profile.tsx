@@ -11,6 +11,7 @@ import {
 import { Label } from "@/components/ui/label";
 import { ProfileForm } from "@/components/patient/ProfileForm";
 import { PaymentForm } from "@/components/patient/PaymentForm";
+import { PasswordForm } from "@/components/patient/PasswordForm";
 import { useNavigate, Link } from "react-router-dom";
 import { User } from "@/types";
 import {
@@ -22,6 +23,7 @@ import {
   Mail,
   Calendar,
   Phone,
+  Key,
 } from "lucide-react";
 import { Layout } from "@/components/layout/Layout";
 
@@ -30,6 +32,7 @@ export default function Profile() {
   const navigate = useNavigate();
   const [isProfileEditing, setIsProfileEditing] = useState(false);
   const [isPaymentEditing, setIsPaymentEditing] = useState(false);
+  const [isPasswordEditing, setIsPasswordEditing] = useState(false);
 
   if (!user) {
     return (
@@ -189,6 +192,39 @@ export default function Profile() {
                       There is no payment information
                     </div>
                   )}
+                </div>
+              )}
+            </CardContent>
+          </Card>
+
+          {/* Password Card */}
+          <Card>
+            <CardHeader className="relative">
+              <CardTitle className="flex items-center gap-2">
+                Password
+              </CardTitle>
+              <CardDescription>Change your account password</CardDescription>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="absolute right-4 top-4 rounded-full"
+                onClick={() => setIsPasswordEditing(!isPasswordEditing)}
+              >
+                <Edit className="h-4 w-4" />
+              </Button>
+            </CardHeader>
+            <CardContent>
+              {isPasswordEditing ? (
+                <PasswordForm />
+              ) : (
+                <div className="space-y-2">
+                  <Label>
+                    <div className="flex items-center gap-2">
+                      <Key className="h-4 w-4" />
+                      Current Password
+                    </div>
+                  </Label>
+                  <div className="font-mono font-medium">••••••••••••</div>
                 </div>
               )}
             </CardContent>
