@@ -1,5 +1,4 @@
 import { useAuth } from "@/contexts/AuthContext";
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -8,14 +7,13 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { ProfileForm } from "@/components/patient/ProfileForm";
+import { PaymentForm } from "@/components/patient/PaymentForm";
 import { useNavigate, Link } from "react-router-dom";
-import { User } from "@/types";
-import { User as UserIcon, Loader2, ArrowLeft } from "lucide-react";
+import { User as Loader2, ArrowLeft, CreditCard } from "lucide-react";
 import { Layout } from "@/components/layout/Layout";
 
 export default function Profile() {
   const { user } = useAuth();
-  const navigate = useNavigate();
 
   if (!user) {
     return (
@@ -65,6 +63,22 @@ export default function Profile() {
             </CardHeader>
             <CardContent>
               <ProfileForm user={user} />
+            </CardContent>
+          </Card>
+
+          {/* Payment Method Card */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <CreditCard className="h-5 w-5" />
+                Payment Method
+              </CardTitle>
+              <CardDescription>
+                Add or update your payment information for medical services
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <PaymentForm user={user} />
             </CardContent>
           </Card>
         </div>

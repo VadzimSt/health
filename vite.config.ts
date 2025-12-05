@@ -4,10 +4,12 @@ import { defineConfig } from "vite";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  // server: {
-  //   host: "::",
-  //   port: 8080,
-  // },
+  ...(mode === "development" && {
+    server: {
+      host: "::",
+      port: 8080,
+    },
+  }),
   base: "/health/",
   plugins: [react()],
   resolve: {

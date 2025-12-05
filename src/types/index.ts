@@ -14,6 +14,11 @@ export interface User {
   bloodType?: string;
   allergies?: string;
   medicalConditions?: string;
+  paymentMethod?: {
+    cardNumber?: string;
+    expiryDate?: string;
+    cvc?: string;
+  };
 }
 
 export type RequestStatus = "pending" | "approved" | "rejected";

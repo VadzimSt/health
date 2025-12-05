@@ -35,6 +35,11 @@ export function ProfileForm({ user }: ProfileFormProps) {
     bloodType: user.bloodType || "",
     allergies: user.allergies || "",
     medicalConditions: user.medicalConditions || "",
+    paymentMethod: {
+      cardNumber: user.paymentMethod?.cardNumber || "",
+      expiryDate: user.paymentMethod?.expiryDate || "",
+      cvc: user.paymentMethod?.cvc || "",
+    },
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -76,7 +81,10 @@ export function ProfileForm({ user }: ProfileFormProps) {
 
     try {
       setIsLoading(true);
-      await updateProfile(formData);
+      await updateProfile({
+        ...formData,
+        paymentMethod: formData.paymentMethod,
+      });
       toast({
         title: "Profile updated",
         description: "Your profile information has been saved successfully.",
@@ -97,6 +105,7 @@ export function ProfileForm({ user }: ProfileFormProps) {
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+
     // Clear error when user starts typing
     if (errors[name]) {
       setErrors((prev) => ({ ...prev, [name]: "" }));
@@ -202,7 +211,7 @@ export function ProfileForm({ user }: ProfileFormProps) {
           </div>
         </div>
 
-        {/* Medical Conditions */}
+        {/* Medical Information */}
         <div className="space-y-2">
           <Label htmlFor="allergies">Allergies</Label>
           <Textarea
@@ -214,6 +223,7 @@ export function ProfileForm({ user }: ProfileFormProps) {
             rows={3}
           />
         </div>
+
         <div className="flex gap-3">
           <Button type="submit" disabled={isLoading}>
             {isLoading ? "Saving..." : "Save Changes"}
