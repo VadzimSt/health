@@ -8,6 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Label } from "@/components/ui/label";
 import { ProfileForm } from "@/components/patient/ProfileForm";
 import { PaymentForm } from "@/components/patient/PaymentForm";
 import { useNavigate, Link } from "react-router-dom";
@@ -18,6 +19,9 @@ import {
   ArrowLeft,
   CreditCard,
   Edit,
+  Mail,
+  Calendar,
+  Phone,
 } from "lucide-react";
 import { Layout } from "@/components/layout/Layout";
 
@@ -87,8 +91,59 @@ export default function Profile() {
               {isProfileEditing ? (
                 <ProfileForm user={user} />
               ) : (
-                <div className="text-center py-8 text-muted-foreground">
-                  Profile information will appear here when you click edit
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label>
+                      <div className="flex items-center gap-2">
+                        <UserIcon className="h-4 w-4" />
+                        Full Name
+                      </div>
+                    </Label>
+                    <div className="font-display font-medium text-foreground">
+                      {user.name}
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <Label>
+                      <div className="flex items-center gap-2">
+                        <Mail className="h-4 w-4" />
+                        Email Address
+                      </div>
+                    </Label>
+                    <div className="font-display font-medium text-foreground">
+                      {user.email}
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <Label>
+                      <div className="flex items-center gap-2">
+                        <Calendar className="h-4 w-4" />
+                        Date of Birth
+                      </div>
+                    </Label>
+                    <div className="font-display font-medium text-foreground">
+                      {user.dateOfBirth
+                        ? new Date(user.dateOfBirth).toLocaleDateString()
+                        : "Not provided"}
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <Label>
+                      <div className="flex items-center gap-2">
+                        <Phone className="h-4 w-4" />
+                        Phone Number
+                      </div>
+                    </Label>
+                    <div className="font-display font-medium text-foreground">
+                      {user.phone || "Not provided"}
+                    </div>
+                  </div>
+                  <div className="md:col-span-2 space-y-2">
+                    <Label>Allergies</Label>
+                    <div className="font-display font-medium text-foreground">
+                      {user.allergies || "None reported"}
+                    </div>
+                  </div>
                 </div>
               )}
             </CardContent>
@@ -98,7 +153,6 @@ export default function Profile() {
           <Card>
             <CardHeader className="relative">
               <CardTitle className="flex items-center gap-2">
-                <CreditCard className="h-5 w-5" />
                 Payment Method
               </CardTitle>
               <CardDescription>
@@ -119,8 +173,22 @@ export default function Profile() {
               {isPaymentEditing ? (
                 <PaymentForm user={user} />
               ) : (
-                <div className="text-center py-8 text-muted-foreground">
-                  Payment information will appear here when you click edit
+                <div className="space-y-2">
+                  <Label>
+                    <div className="flex items-center gap-2">
+                      <CreditCard className="h-4 w-4" />
+                      Card Number
+                    </div>
+                  </Label>
+                  {user.paymentMethod?.cardNumber ? (
+                    <div className="font-mono font-medium">
+                      •••• •••• •••• {user.paymentMethod.cardNumber.slice(-4)}
+                    </div>
+                  ) : (
+                    <div className="text-muted-foreground">
+                      There is no payment information
+                    </div>
+                  )}
                 </div>
               )}
             </CardContent>

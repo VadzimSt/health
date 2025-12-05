@@ -93,7 +93,7 @@ export function PaymentForm({ user }: PaymentFormProps) {
           <div className="space-y-2">
             <Label htmlFor="cardNumber">
               <div className="flex items-center gap-2">
-                <CreditCard />
+                <CreditCard className="h-4 w-4" />
                 Card Number
               </div>
             </Label>
@@ -116,7 +116,12 @@ export function PaymentForm({ user }: PaymentFormProps) {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="expiryDate">MM/YY</Label>
+            <Label htmlFor="expiryDate">
+              <div className="flex items-center gap-2">
+                <CreditCard className="h-4 w-4" />
+                MM/YY
+              </div>
+            </Label>
             <Input
               id="expiryDate"
               name="expiryDate"
@@ -134,7 +139,12 @@ export function PaymentForm({ user }: PaymentFormProps) {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="cvc">CVC</Label>
+            <Label htmlFor="cvc">
+              <div className="flex items-center gap-2">
+                <CreditCard className="h-4 w-4" />
+                CVC
+              </div>
+            </Label>
             <Input
               id="cvc"
               name="cvc"
