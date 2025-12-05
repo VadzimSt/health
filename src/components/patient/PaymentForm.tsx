@@ -93,7 +93,7 @@ export function PaymentForm({ user }: PaymentFormProps) {
           <div className="space-y-2">
             <Label htmlFor="cardNumber">
               <div className="flex items-center gap-2">
-                <CreditCard className="h-4 w-4" />
+                <CreditCard />
                 Card Number
               </div>
             </Label>
