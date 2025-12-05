@@ -87,75 +87,77 @@ export function PaymentForm({ user }: PaymentFormProps) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="space-y-2">
-          <Label htmlFor="cardNumber">
-            <div className="flex items-center gap-2">
-              <CreditCard className="h-4 w-4" />
-              Card Number
-            </div>
-          </Label>
-          <Input
-            id="cardNumber"
-            name="cardNumber"
-            value={formData.cardNumber}
-            onChange={handleInputChange}
-            placeholder="1234 5678 9012 3456"
-            className={`font-mono ${
-              errors.cardNumber ? "border-destructive" : ""
-            }`}
-          />
-          {errors.cardNumber && (
-            <p className="text-sm text-destructive flex items-center gap-1">
-              <AlertCircle className="h-3 w-3" />
-              {errors.cardNumber}
-            </p>
-          )}
+    <div className="space-y-6">
+      <form onSubmit={handleSubmit} className="space-y-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="space-y-2">
+            <Label htmlFor="cardNumber">
+              <div className="flex items-center gap-2">
+                <CreditCard className="h-4 w-4" />
+                Card Number
+              </div>
+            </Label>
+            <Input
+              id="cardNumber"
+              name="cardNumber"
+              value={formData.cardNumber}
+              onChange={handleInputChange}
+              placeholder="1234 5678 9012 3456"
+              className={`font-mono ${
+                errors.cardNumber ? "border-destructive" : ""
+              }`}
+            />
+            {errors.cardNumber && (
+              <p className="text-sm text-destructive flex items-center gap-1">
+                <AlertCircle className="h-3 w-3" />
+                {errors.cardNumber}
+              </p>
+            )}
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="expiryDate">MM/YY</Label>
+            <Input
+              id="expiryDate"
+              name="expiryDate"
+              value={formData.expiryDate}
+              onChange={handleInputChange}
+              placeholder="MM/YY"
+              className={errors.expiryDate ? "border-destructive" : ""}
+            />
+            {errors.expiryDate && (
+              <p className="text-sm text-destructive flex items-center gap-1">
+                <AlertCircle className="h-3 w-3" />
+                {errors.expiryDate}
+              </p>
+            )}
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="cvc">CVC</Label>
+            <Input
+              id="cvc"
+              name="cvc"
+              value={formData.cvc}
+              onChange={handleInputChange}
+              placeholder="123"
+              className={errors.cvc ? "border-destructive" : ""}
+            />
+            {errors.cvc && (
+              <p className="text-sm text-destructive flex items-center gap-1">
+                <AlertCircle className="h-3 w-3" />
+                {errors.cvc}
+              </p>
+            )}
+          </div>
         </div>
 
-        <div className="space-y-2">
-          <Label htmlFor="expiryDate">MM/YY</Label>
-          <Input
-            id="expiryDate"
-            name="expiryDate"
-            value={formData.expiryDate}
-            onChange={handleInputChange}
-            placeholder="MM/YY"
-            className={errors.expiryDate ? "border-destructive" : ""}
-          />
-          {errors.expiryDate && (
-            <p className="text-sm text-destructive flex items-center gap-1">
-              <AlertCircle className="h-3 w-3" />
-              {errors.expiryDate}
-            </p>
-          )}
+        <div className="flex gap-3">
+          <Button type="submit" disabled={isLoading}>
+            {isLoading ? "Saving..." : "Save Changes"}
+          </Button>
         </div>
-
-        <div className="space-y-2">
-          <Label htmlFor="cvc">CVC</Label>
-          <Input
-            id="cvc"
-            name="cvc"
-            value={formData.cvc}
-            onChange={handleInputChange}
-            placeholder="123"
-            className={errors.cvc ? "border-destructive" : ""}
-          />
-          {errors.cvc && (
-            <p className="text-sm text-destructive flex items-center gap-1">
-              <AlertCircle className="h-3 w-3" />
-              {errors.cvc}
-            </p>
-          )}
-        </div>
-      </div>
-
-      <div className="flex gap-3">
-        <Button type="submit" disabled={isLoading}>
-          {isLoading ? "Saving..." : "Save Changes"}
-        </Button>
-      </div>
-    </form>
+      </form>
+    </div>
   );
 }
